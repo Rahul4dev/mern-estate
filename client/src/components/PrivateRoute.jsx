@@ -5,7 +5,9 @@ const PrivateRoute = () => {
   const currentUser = useSelector((state) => state.user.user.currentUser);
   //   console.log(currentUser);
 
-  return currentUser && currentUser.message !== 'User has been deleted' ? (
+  return currentUser &&
+    currentUser.message !== 'User has been deleted' &&
+    currentUser.message !== 'User has been signed out successfully!.' ? (
     <Outlet />
   ) : (
     <Navigate to={'/sign-in'} />

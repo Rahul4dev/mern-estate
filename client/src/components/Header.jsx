@@ -35,7 +35,10 @@ const Header = () => {
             </li>
           </Link>
           <Link to={'./profile'}>
-            {currentUser && currentUser.message !== 'User has been deleted' ? (
+            {currentUser &&
+            currentUser.message !== 'User has been deleted' &&
+            currentUser.message !==
+              'User has been signed out successfully!.' ? (
               <img
                 src={currentUser.avatar}
                 alt="profile"

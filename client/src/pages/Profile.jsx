@@ -15,8 +15,12 @@ import {
   deleteUserStart,
   deleteUserSuccess,
   deleteUserFailure,
+  signOutUserStart,
+  signOutUserSuccess,
+  signOutUserFailure,
 } from '../redux/user/userSlice.js';
 import { app } from '../firebase.js';
+import { errorHandler } from '../../../api/utils/error.js';
 
 //*   Create Firebase Storage: To Store the profile image
 //* Step 1: Open Firebase Account, Go to Build=> Storage => Get Started => Create the Storage
@@ -124,6 +128,23 @@ const Profile = () => {
       dispatch(deleteUserFailure(error.message));
     }
   };
+
+  const signOutHandler = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(signOutUserFailure(data.message));
+        return;
+      }
+      dispatch(signOutUserSuccess(data));
+      navigate('/sign-in');
+    } catch (error) {
+      errorHandler(error.message);
+      dispatch(signOutUserFailure(error.message));
+    }
+  };
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
@@ -194,7 +215,9 @@ const Profile = () => {
           <button type="button" onClick={deleteHandler}>
             Delete Account
           </button>
-          <button type="button">Sign Out</button>
+          <button type="button" onClick={signOutHandler}>
+            Sign Out
+          </button>
         </div>
         <p className=" text-red-600 font-normal text-[17px] mt-2">
           {error ? error : ''}
