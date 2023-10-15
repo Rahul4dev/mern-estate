@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   getDownloadURL,
   getStorage,
@@ -11,6 +12,9 @@ import {
   updateUserStart,
   updateUserSuccess,
   updateUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
 } from '../redux/user/userSlice.js';
 import { app } from '../firebase.js';
 
@@ -27,6 +31,7 @@ const Profile = () => {
     (state) => state.user.user
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [fileProgress, setFileProgress] = useState(0);
@@ -97,6 +102,28 @@ const Profile = () => {
       dispatch(updateUserFailure(error.message));
     }
   };
+
+  const deleteHandler = async () => {
+    try {
+      dispatch(deleteUserStart());
+
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+
+      dispatch(deleteUserSuccess(data));
+
+      navigate('/sign-in');
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
@@ -164,7 +191,9 @@ const Profile = () => {
           Create Listing
         </button>
         <div className="flex flex-row justify-between text-red-600 font-normal text-[17px]">
-          <button type="button">Delete Account</button>
+          <button type="button" onClick={deleteHandler}>
+            Delete Account
+          </button>
           <button type="button">Sign Out</button>
         </div>
         <p className=" text-red-600 font-normal text-[17px] mt-2">
