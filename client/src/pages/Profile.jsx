@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   getDownloadURL,
   getStorage,
@@ -205,12 +205,12 @@ const Profile = () => {
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
-        <button
-          type="button"
-          className="bg-green-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 disabled:cursor-not-allowed"
+        <Link
+          to="/create-listing"
+          className="bg-green-700 text-white p-3 rounded-lg text-center uppercase hover:opacity-95 disabled:opacity-80 disabled:cursor-not-allowed"
         >
           Create Listing
-        </button>
+        </Link>
         <div className="flex flex-row justify-between text-red-600 font-normal text-[17px]">
           <button type="button" onClick={deleteHandler}>
             Delete Account
