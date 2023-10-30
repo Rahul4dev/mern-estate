@@ -69,7 +69,7 @@ const UpdateListing = () => {
         })
         .catch((error) => {
           setImageUploadError(
-            'Image upload failed ( 2Mb amx per image )' + error.message
+            'Image upload failed ( 2Mb max per image )' + error.message
           );
           setUploading(false);
         });
@@ -91,7 +91,9 @@ const UpdateListing = () => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`Upload is ${progress}% done.`);
+          if (progress === 100) {
+            console.log(`Upload is ${progress}% done.`);
+          }
         },
         (error) => {
           reject(error);
@@ -166,7 +168,7 @@ const UpdateListing = () => {
       if (data.success === false) {
         setError(data.message);
       }
-      navigate(`/listing/${params.listingId}`);
+      navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -213,7 +215,7 @@ const UpdateListing = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="w-5 ml-2"
+                className="w-5"
                 id="sale"
                 onChange={handleChange}
                 checked={formData.type === 'sale'}
@@ -224,7 +226,7 @@ const UpdateListing = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="w-5  ml-2"
+                className="w-5"
                 id="rent"
                 onChange={handleChange}
                 checked={formData.type === 'rent'}
@@ -235,7 +237,7 @@ const UpdateListing = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="w-5  ml-2"
+                className="w-5"
                 id="parking"
                 onChange={handleChange}
                 checked={formData.parking}
@@ -246,7 +248,7 @@ const UpdateListing = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="w-5  ml-2"
+                className="w-5"
                 id="furnished"
                 onChange={handleChange}
                 checked={formData.furnished}
@@ -257,7 +259,7 @@ const UpdateListing = () => {
             <div className="flex gap-2">
               <input
                 type="checkbox"
-                className="w-5  ml-2"
+                className="w-5"
                 id="offer"
                 onChange={handleChange}
                 checked={formData.offer}
