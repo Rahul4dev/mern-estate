@@ -23,7 +23,8 @@ const Header = () => {
     if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
 
   return (
     <header className="bg-slate-200 shadow-md">
