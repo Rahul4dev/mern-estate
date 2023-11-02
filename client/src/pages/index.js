@@ -6,6 +6,7 @@ import SignUp from './SignUp';
 import CreateListing from './CreateListing';
 import UpdateListing from './UpdateListing';
 import Listing from './Listing';
+import Search from './Search';
 
 export {
   About,
@@ -13,6 +14,7 @@ export {
   Home,
   Listing,
   Profile,
+  Search,
   SignIn,
   SignUp,
   UpdateListing,
