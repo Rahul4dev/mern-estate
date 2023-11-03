@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaSearch } from 'react-icons/fa';
+import { HiHomeModern } from 'react-icons/hi2';
 import { useEffect, useState } from 'react';
 
 const Header = () => {
@@ -30,10 +31,10 @@ const Header = () => {
     <header className="bg-slate-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to={'/'}>
-          <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
+          <h1 className="font-bold text-sm sm:text-xl items-center flex flex-wrap">
+            <HiHomeModern className="mr-1 ml-4" />
             <span className="text-slate-500">React </span>
-
-            <span className="text-slate-700">Estate</span>
+            <span className="text-slate-700 ml-1">Estate</span>
           </h1>
         </Link>
         <form
