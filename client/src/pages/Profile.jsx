@@ -274,11 +274,7 @@ const Profile = () => {
             {showListingsError}
           </p>
         )}
-        {userListing.length === 0 && (
-          <p className=" text-red-600 font-normal  self-center text-[17px] mt-2">
-            You do not have any listing. May be create some!
-          </p>
-        )}
+
         {userListing && userListing.length > 0 && (
           <>
             <h1 className="font-semibold text-[2rem] self-center">

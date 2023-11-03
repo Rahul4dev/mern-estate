@@ -46,21 +46,21 @@ const SignUp = () => {
         <input
           type="text"
           className="border p-3 rounded-lg"
-          placeholder=""
+          placeholder="Enter your username"
           id="username"
           onChange={handleChange}
         />
         <input
           type="email"
           className="border p-3 rounded-lg"
-          placeholder=""
+          placeholder="Email address"
           id="email"
           onChange={handleChange}
         />
         <input
           type="password"
           className="border p-3 rounded-lg"
-          placeholder=""
+          placeholder="Password"
           id="password"
           onChange={handleChange}
         />
