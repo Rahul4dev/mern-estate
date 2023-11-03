@@ -3,7 +3,6 @@ import { MdLocationOn } from 'react-icons/md';
 
 /* eslint-disable react/prop-types */
 export default function ListingItem({ listing }) {
-  console.log(listing);
   const defaultImageAddress =
     'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5OTAwMTQwMg&ixlib=rb-4.0.3&q=80&w=1080';
   return (
